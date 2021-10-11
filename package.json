@@ -1,5 +1,5 @@
 {
-  "name": "rms-backend-status",
+  "name": "rms-status-backend",
   "version": "0.1.0",
   "description": "Express backend of RMS Server status service",
   "main": "index.js",
