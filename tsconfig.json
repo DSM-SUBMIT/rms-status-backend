@@ -5,6 +5,7 @@
     "module": "commonjs",
     "declaration": true,
     "sourceMap": true,
+    "sourceRoot": "src",
     "outDir": "./dist",
     "removeComments": true,
     "strict": true,
