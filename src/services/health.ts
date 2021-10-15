@@ -1,6 +1,7 @@
 import { Service } from 'typedi';
 import axios from 'axios';
 import { Status } from 'src/shared/interfaces/Status';
+import { AdminStatusResponse } from 'src/shared/interfaces/AdminStatusResponse';
 
 @Service('HealthService')
 export class HealthService {
@@ -11,6 +12,7 @@ export class HealthService {
       user: (await this.getUserStatus()) ? 'up' : 'down',
       admin: (await this.getAdminStatus()) ? 'up' : 'down',
       file: (await this.getFileStatus()) ? 'up' : 'down',
+      db: (await this.getDBStatus()) ? 'up' : 'down',
     };
     return status;
   }
@@ -28,6 +30,17 @@ export class HealthService {
     try {
       const res = await axios.get('https://admin-api.dsm-rms.com/health');
       return res.status === 200;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  public async getDBStatus(): Promise<boolean> {
+    try {
+      const res = await axios.get<AdminStatusResponse>(
+        'https://admin-api.dsm-rms.com/health',
+      );
+      return res.data?.status === 'ok';
     } catch (e) {
       return false;
     }
