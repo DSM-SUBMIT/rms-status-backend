@@ -35,7 +35,7 @@ export class HealthService {
 
   public async getFileStatus(): Promise<boolean> {
     try {
-      const res = await axios.get('https://file-api.dsm-rms.com/health');
+      const res = await axios.get('https://files-api.dsm-rms.com/health');
       return res.status === 200;
     } catch (e) {
       return false;
