@@ -9,13 +9,14 @@ export class HealthService {
 
   public async getStatus(): Promise<Status> {
     const promises = [
-      this.getUserStatus,
-      this.getAdminStatus,
-      this.getFileStatus,
-      this.getDBStatus,
+      this.getUserStatus(),
+      this.getAdminStatus(),
+      this.getFileStatus(),
+      this.getDBStatus(),
     ];
 
     const res = await Promise.all(promises);
+    console.log(res);
 
     const status: Status = {
       user: res[0] ? 'up' : 'down',
