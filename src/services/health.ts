@@ -8,11 +8,16 @@ export class HealthService {
   constructor() {}
 
   public async getStatus(): Promise<Status> {
+    const userStatus = await this.getUserStatus();
+    const adminStatus = await this.getAdminStatus();
+    const fileStatus = await this.getFileStatus();
+    const dbStatus = await this.getDBStatus();
+
     const status: Status = {
-      user: (await this.getUserStatus()) ? 'up' : 'down',
-      admin: (await this.getAdminStatus()) ? 'up' : 'down',
-      file: (await this.getFileStatus()) ? 'up' : 'down',
-      db: (await this.getDBStatus()) ? 'up' : 'down',
+      user: userStatus ? 'up' : 'down',
+      admin: adminStatus ? 'up' : 'down',
+      file: fileStatus ? 'up' : 'down',
+      db: dbStatus ? 'up' : adminStatus ? 'down' : 'unknown',
     };
     return status;
   }
