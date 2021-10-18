@@ -1,11 +1,11 @@
 {
   "name": "rms-status-backend",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Express backend of RMS Server status service",
   "main": "index.js",
   "scripts": {
     "build": "tsc -p .",
-    "start:prod": "node -r tsconfig-paths/register -r ts-node/register dist/index",
+    "start:prod": "node -r ./tsconfig-paths-bootstrap.js dist/index",
     "start:dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' -r tsconfig-paths/register src/index.ts",
     "test": "NODE_ENV=test jest tests/*.test.js --passWithNoTests",
     "test:cov": "NODE_ENV=test jest tests/*.test.js --coverage --passWithNoTests"
