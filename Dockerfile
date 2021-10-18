@@ -12,9 +12,14 @@ COPY ./tsconfig.json ./
 RUN pnpm build
 
 FROM node:lts-alpine
+
+RUN npm i -g pnpm
+
 COPY --from=builder ./node_modules ./node_modules
 COPY --from=builder ./dist ./dist
 COPY package.json ./
+COPY tsconfig.json ./
+COPY tsconfig-paths-bootstrap.js ./
 
 EXPOSE 3000
 
