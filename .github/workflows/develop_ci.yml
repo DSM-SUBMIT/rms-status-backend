@@ -2,13 +2,12 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ develop ]
+    branches: [develop]
   pull_request:
-    branches: [ develop ]
+    branches: [develop]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -18,14 +17,14 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '14.x'
-          cache: 'yarn'
-          
+          cache: pnpm
+
       - name: Install dependencies
-        run: yarn --frozen-lockfile
-               
+        run: pnpm i
+
       - name: Run tests
-        run: yarn test:cov
-        
+        run: pnpm test:cov
+
       - name: Upload to Codecov
         uses: codecov/codecov-action@v2.0.3
         with:
