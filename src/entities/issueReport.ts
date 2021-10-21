@@ -16,6 +16,6 @@ export class IssueReport {
   @Column({ type: 'varchar', length: 1000 })
   content!: string;
 
-  @CreateDateColumn()
-  created_at!: Date;
+  @CreateDateColumn({ name: 'created_at' })
+  createdAt!: Date;
 }
