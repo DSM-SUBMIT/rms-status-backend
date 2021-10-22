@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import 'reflect-metadata';
 import Fastify from 'fastify';
 import DatabaseConnector from 'src/utils/decorators/databaseConnector';
 import RedisConnector from 'src/utils/decorators/redisConnector';
