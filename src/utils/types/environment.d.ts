@@ -3,6 +3,8 @@ declare global {
     interface ProcessEnv {
       NODE_ENV: 'development' | 'production';
 
+      PORT: string;
+
       DEV_DB_HOST: string;
       DEV_DB_PORT: string;
       DEV_DB_USERNAME: string;
