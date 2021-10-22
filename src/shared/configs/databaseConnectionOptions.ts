@@ -1,5 +1,8 @@
 import 'dotenv/config';
 import { ConnectionOptions } from 'typeorm';
+import { Comment } from '../entities/comment';
+import { IssueReport } from '../entities/issueReport';
+import { Outage } from '../entities/outage';
 
 export const connectionOptions: { [key: string]: ConnectionOptions } = {
   development: {
@@ -9,6 +12,7 @@ export const connectionOptions: { [key: string]: ConnectionOptions } = {
     username: process.env.DEV_DB_USERNAME,
     password: process.env.DEV_DB_PASSWORD,
     database: process.env.DEV_DB_DATABASE,
+    entities: [Comment, IssueReport, Outage],
     synchronize: true,
     logging: true,
   },
@@ -19,6 +23,7 @@ export const connectionOptions: { [key: string]: ConnectionOptions } = {
     username: process.env.PROD_DB_USERNAME,
     password: process.env.PROD_DB_PASSWORD,
     database: process.env.PROD_DB_DATABASE,
+    entities: [Comment, IssueReport, Outage],
     synchronize: false,
     logging: false,
   },
