@@ -1,12 +1,14 @@
 import 'dotenv/config';
 import Fastify from 'fastify';
 import DatabaseConnector from 'src/utils/decorators/databaseConnector';
+import RedisConnector from 'src/utils/decorators/redisConnector';
 
 const fastify = Fastify({
   logger: true,
 });
 
 fastify.register(DatabaseConnector);
+fastify.register(RedisConnector);
 
 async function bootstrap() {
   try {
