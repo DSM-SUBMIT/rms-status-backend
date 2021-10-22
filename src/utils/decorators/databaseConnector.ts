@@ -7,7 +7,7 @@ import { Outage } from 'src/shared/entities/outage';
 
 export default fp(async (fastify) => {
   try {
-    const connectionOption = connectionOptions[process.env.NODE_ENV];
+    const connectionOption = connectionOptions[process.env.NODE_ENV!];
     const connection = await createConnection(connectionOption);
 
     fastify.decorate('db', {
