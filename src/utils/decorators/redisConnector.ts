@@ -1,5 +1,5 @@
 import fp from 'fastify-plugin';
-import redis from 'redis';
+import * as redis from 'redis';
 
 export default fp(async (fastify) => {
   try {
