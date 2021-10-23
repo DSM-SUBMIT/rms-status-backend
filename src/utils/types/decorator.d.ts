@@ -16,6 +16,5 @@ declare module 'fastify' {
       issueReport: Repository<IssueReport>;
       outage: Repository<Outage>;
     };
-    redis: RedisClient;
   }
 }
