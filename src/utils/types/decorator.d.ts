@@ -4,6 +4,7 @@ import { IssueReport } from 'src/shared/entities/issueReport';
 import { Outage } from 'src/shared/entities/outage';
 import { RedisClient } from 'redis';
 import { Repository } from 'typeorm';
+import { DatabaseConnection } from 'src/shared/interfaces/databaseConnection';
 
 declare module 'fastify' {
   export interface FastifyInstance<
@@ -11,10 +12,6 @@ declare module 'fastify' {
     HttpRequest = IncomingMessage,
     HttpResponse = ServerResponse,
   > {
-    db: {
-      comment: Repository<Comment>;
-      issueReport: Repository<IssueReport>;
-      outage: Repository<Outage>;
-    };
+    db: DatabaseConnection;
   }
 }
