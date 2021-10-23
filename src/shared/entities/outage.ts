@@ -17,7 +17,7 @@ export class Outage {
   related!: string;
 
   @CreateDateColumn({ name: 'created_at' })
-  createdAt!: string;
+  createdAt!: Date;
 
   @Column()
   resolved!: boolean;
