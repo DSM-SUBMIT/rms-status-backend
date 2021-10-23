@@ -19,6 +19,9 @@ export class Outage {
   @CreateDateColumn({ name: 'created_at' })
   createdAt!: Date;
 
+  @Column({ type: 'varchar', length: 6 })
+  severity!: string;
+
   @Column()
   resolved!: boolean;
 }
