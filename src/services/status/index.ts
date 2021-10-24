@@ -21,8 +21,6 @@ export class StatusService {
       })),
     );
 
-    console.log(ongoingOutages);
-
     const presentStatus = (() => {
       const outage = ongoingOutages.filter(
         (v) => v.outage.severity === 'red' || v.outage.severity === 'yellow',
@@ -33,8 +31,6 @@ export class StatusService {
           : 'yellow'
         : 'green';
     })();
-
-    console.log(presentStatus);
 
     const now = new Date();
     const previousDate = new Date(now.getTime());
@@ -56,8 +52,6 @@ export class StatusService {
       find('User Site'),
     ]);
 
-    console.log(outages);
-
     const recentOutages = {
       api: {
         admin: this.dateMapper(outages[0], now),
@@ -69,8 +63,6 @@ export class StatusService {
         user: this.dateMapper(outages[4], now),
       },
     };
-
-    console.log(recentOutages);
 
     const result: RecentStatus = {
       status: presentStatus,
@@ -131,7 +123,6 @@ export class StatusService {
     req: FastifyRequest<{ Body: ReportOutage }>,
     db: DatabaseConnection,
   ): Promise<boolean> {
-    console.log(req.body);
     return (
       await db.issueReport.insert({
         title: req.body.title,
@@ -146,7 +137,6 @@ export class StatusService {
     req: FastifyRequest<{ Querystring: PeriodRequest }>,
     db: DatabaseConnection,
   ): Promise<OutageInfo[]> {
-    console.log(req.query);
     const outages = await db.outage.find({
       where: {
         createdAt: Between(
@@ -160,7 +150,6 @@ export class StatusService {
       },
       relations: ['comments'],
     });
-    console.log(outages);
 
     return outages.map((outage) => ({
       title: outage.title,
@@ -207,9 +196,6 @@ export class StatusService {
   private dateMapper(entities: Outage[], now: Date): Map<number, Outage> {
     const result = new Map<number, Outage>();
     entities.forEach((outage) => {
-      console.log(now.toISOString(), outage.createdAt.toISOString());
-      console.log(now.getTime(), outage.createdAt.getTime());
-      console.log((now.getTime() - outage.createdAt.getTime()) / 86400000);
       result.set(
         Math.floor((now.getTime() - outage.createdAt.getTime()) / 86400000),
         outage,
