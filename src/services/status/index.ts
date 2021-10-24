@@ -86,6 +86,7 @@ export class StatusService {
           })),
           affected_on: v.outage.related,
           severity: v.outage.severity,
+          date: v.outage.createdAt,
         })),
       ),
       apis: {
@@ -170,6 +171,7 @@ export class StatusService {
       })),
       affected_on: outage.related,
       severity: outage.severity,
+      date: outage.createdAt,
     }));
   }
 

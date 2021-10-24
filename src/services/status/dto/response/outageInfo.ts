@@ -9,4 +9,5 @@ export interface OutageInfo {
   posts: PostItem[];
   affected_on: string;
   severity: string;
+  date: Date;
 }
