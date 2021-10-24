@@ -89,22 +89,19 @@ export class StatusService {
           status: this.statusMapper(ongoingOutages, 'User API'),
           recent: new Array(30)
             .fill(undefined)
-            .map(this.dateArrayMapper(now, recentOutages.api.user))
-            .reverse(),
+            .map(this.dateArrayMapper(now, recentOutages.api.user)),
         },
         admin: {
           status: this.statusMapper(ongoingOutages, 'Admin API'),
           recent: new Array(30)
             .fill(undefined)
-            .map(this.dateArrayMapper(now, recentOutages.api.admin))
-            .reverse(),
+            .map(this.dateArrayMapper(now, recentOutages.api.admin)),
         },
         file: {
           status: this.statusMapper(ongoingOutages, 'File API'),
           recent: new Array(30)
             .fill(undefined)
-            .map(this.dateArrayMapper(now, recentOutages.api.file))
-            .reverse(),
+            .map(this.dateArrayMapper(now, recentOutages.api.file)),
         },
       },
       sites: {
@@ -112,15 +109,13 @@ export class StatusService {
           status: this.statusMapper(ongoingOutages, 'User Site'),
           recent: new Array(30)
             .fill(undefined)
-            .map(this.dateArrayMapper(now, recentOutages.site.user))
-            .reverse(),
+            .map(this.dateArrayMapper(now, recentOutages.site.user)),
         },
         admin: {
           status: this.statusMapper(ongoingOutages, 'Admin Site'),
           recent: new Array(30)
             .fill(undefined)
-            .map(this.dateArrayMapper(now, recentOutages.site.admin))
-            .reverse(),
+            .map(this.dateArrayMapper(now, recentOutages.site.admin)),
         },
       },
     };
