@@ -5,7 +5,11 @@ import DatabaseConnector from 'src/utils/decorators/databaseConnector';
 import { StatusController } from './controllers/status';
 
 const fastify = Fastify({
-  logger: true,
+  logger: {
+    prettyPrint: {
+      colorize: true,
+    },
+  },
 });
 
 fastify.register(DatabaseConnector);
