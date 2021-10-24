@@ -1,9 +1,11 @@
 import { Like, MoreThan } from 'typeorm';
 import { Service } from 'typedi';
-import { RecentStatus } from 'src/shared/interfaces/recentStatus';
+import { RecentStatus } from './dto/response/recentStatus';
 import { DatabaseConnection } from 'src/shared/interfaces/databaseConnection';
 import { Outage } from 'src/shared/entities/outage';
 import { Comment } from 'src/shared/entities/comment';
+import { FastifyRequest } from 'fastify';
+import { ReportOutage } from './dto/request/reportOutage';
 
 @Service()
 export class StatusService {
@@ -120,6 +122,21 @@ export class StatusService {
       },
     };
     return result;
+  }
+
+  async reportOutage(
+    req: FastifyRequest<{ Body: ReportOutage }>,
+    db: DatabaseConnection,
+  ): Promise<boolean> {
+    console.log(req.body);
+    return (
+      await db.issueReport.insert({
+        title: req.body.title,
+        content: req.body.content,
+      })
+    ).identifiers.length
+      ? true
+      : false;
   }
 
   private statusMapper(
