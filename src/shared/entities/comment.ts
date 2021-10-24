@@ -19,7 +19,7 @@ export class Comment {
   @Column({ type: 'varchar', length: 20 })
   title!: string;
 
-  @Column({ type: 'varchar', length: 50 })
+  @Column({ type: 'varchar', length: 60 })
   content!: string;
 
   @CreateDateColumn({ name: 'created_at' })

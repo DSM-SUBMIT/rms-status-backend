@@ -1,14 +1,16 @@
 import 'dotenv/config';
+import 'reflect-metadata';
 import Fastify from 'fastify';
 import DatabaseConnector from 'src/utils/decorators/databaseConnector';
-import RedisConnector from 'src/utils/decorators/redisConnector';
+import { StatusController } from './controllers/status';
 
 const fastify = Fastify({
   logger: true,
 });
 
 fastify.register(DatabaseConnector);
-fastify.register(RedisConnector);
+
+fastify.register(StatusController, { prefix: '/status' });
 
 async function bootstrap() {
   try {

@@ -2,8 +2,10 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Comment } from './comment';
 
 @Entity('outage')
 export class Outage {
@@ -17,8 +19,14 @@ export class Outage {
   related!: string;
 
   @CreateDateColumn({ name: 'created_at' })
-  createdAt!: string;
+  createdAt!: Date;
+
+  @Column({ type: 'varchar', length: 6 })
+  severity!: string;
 
   @Column()
   resolved!: boolean;
+
+  @OneToMany((type) => Comment, (comment) => comment.outageId)
+  comments!: Comment[];
 }

@@ -5,9 +5,6 @@ declare global {
 
       PORT: string;
 
-      REDIS_HOST: string;
-      REDIS_PORT: string;
-
       DEV_DB_HOST: string;
       DEV_DB_PORT: string;
       DEV_DB_USERNAME: string;
