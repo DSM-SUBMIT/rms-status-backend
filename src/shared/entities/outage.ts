@@ -2,8 +2,10 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Comment } from './comment';
 
 @Entity('outage')
 export class Outage {
@@ -24,4 +26,7 @@ export class Outage {
 
   @Column()
   resolved!: boolean;
+
+  @OneToMany((type) => Comment, (comment) => comment.outageId)
+  comments!: Comment[];
 }
