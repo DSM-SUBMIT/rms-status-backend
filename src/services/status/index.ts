@@ -1,4 +1,4 @@
-import { Like, MoreThan } from 'typeorm';
+import { Between, Like, MoreThan } from 'typeorm';
 import { Service } from 'typedi';
 import { RecentStatus } from './dto/response/recentStatus';
 import { DatabaseConnection } from 'src/shared/interfaces/databaseConnection';
@@ -6,6 +6,8 @@ import { Outage } from 'src/shared/entities/outage';
 import { Comment } from 'src/shared/entities/comment';
 import { FastifyRequest } from 'fastify';
 import { ReportOutage } from './dto/request/reportOutage';
+import { PeriodRequest } from './dto/request/getSpecificPeriodOutages';
+import { OutageInfo } from './dto/response/outageInfo';
 
 @Service()
 export class StatusService {
@@ -137,6 +139,38 @@ export class StatusService {
     ).identifiers.length
       ? true
       : false;
+  }
+
+  async getSpecificPeriodOutages(
+    req: FastifyRequest<{ Querystring: PeriodRequest }>,
+    db: DatabaseConnection,
+  ): Promise<OutageInfo[]> {
+    console.log(req.query);
+    const outages = await db.outage.find({
+      where: {
+        createdAt: Between(
+          new Date(req.query.year, req.query.month - 1, 1),
+          new Date(
+            req.query.year,
+            req.query.month - 1,
+            new Date(req.query.year, req.query.month, 0).getDate(),
+          ),
+        ),
+      },
+      relations: ['comments'],
+    });
+    console.log(outages);
+
+    return outages.map((outage) => ({
+      title: outage.title,
+      posts: outage.comments.map((comment) => ({
+        title: comment.title,
+        date: comment.createdAt,
+        content: comment.content,
+      })),
+      affected_on: outage.related,
+      severity: outage.severity,
+    }));
   }
 
   private statusMapper(
