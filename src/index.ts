@@ -1,17 +1,51 @@
-import 'reflect-metadata';
-import * as express from 'express';
-import * as morgan from 'morgan';
-import * as cors from 'cors';
 import 'dotenv/config';
-import { router } from './routers';
+import 'reflect-metadata';
+import Fastify from 'fastify';
+import swagger from 'fastify-swagger';
+import DatabaseConnector from 'src/utils/decorators/databaseConnector';
+import { StatusController } from './controllers/status';
 
-const app = express();
+const fastify = Fastify({
+  logger: {
+    prettyPrint: {
+      colorize: true,
+    },
+  },
+});
 
-app.use(cors());
-app.use(morgan('common'));
+fastify.register(DatabaseConnector);
 
-app.use('/', router);
+fastify.register(swagger, {
+  routePrefix: '/docs',
+  swagger: {
+    info: {
+      title: 'RMS Status backend',
+      description: 'Swagger document of RMS status backend',
+      version: process.env.npm_package_version!,
+    },
+    host: 'localhost',
+    schemes: ['http'],
+    consumes: ['application/json'],
+    produces: ['application/json'],
+    tags: [{ name: 'Status', description: '상태 정보 API' }],
+  },
+  uiConfig: {
+    docExpansion: 'full',
+    deepLinking: false,
+  },
+  staticCSP: true,
+  exposeRoute: true,
+});
 
-app.listen(process.env.PORT, () =>
-  console.log('listening on port ' + process.env.PORT),
-);
+fastify.register(StatusController, { prefix: '/status' });
+
+async function bootstrap() {
+  try {
+    await fastify.listen(+process.env.PORT!, '0.0.0.0');
+  } catch (err) {
+    fastify.log.error(err);
+    process.exit(1);
+  }
+}
+
+bootstrap();
