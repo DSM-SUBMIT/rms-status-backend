@@ -17,7 +17,7 @@ export const connectionOptions: { [key: string]: ConnectionOptions } = {
     logging: true,
   },
   production: {
-    type: 'postgres',
+    type: 'mysql',
     host: process.env.PROD_DB_HOST,
     port: +process.env.PROD_DB_PORT!,
     username: process.env.PROD_DB_USERNAME,

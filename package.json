@@ -19,6 +19,7 @@
     "fastify": "^3.22.1",
     "fastify-plugin": "^3.0.0",
     "fastify-swagger": "^4.12.5",
+    "mysql2": "^2.3.2",
     "pg": "^8.7.1",
     "pino-pretty": "^7.1.0",
     "reflect-metadata": "^0.1.13",
