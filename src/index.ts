@@ -2,6 +2,7 @@ import 'dotenv/config';
 import 'reflect-metadata';
 import Fastify from 'fastify';
 import swagger from 'fastify-swagger';
+import cors from 'fastify-cors';
 import DatabaseConnector from 'src/utils/decorators/databaseConnector';
 import { StatusController } from './controllers/status';
 
@@ -13,8 +14,8 @@ const fastify = Fastify({
   },
 });
 
+fastify.register(cors);
 fastify.register(DatabaseConnector);
-
 fastify.register(swagger, {
   routePrefix: '/docs',
   swagger: {
