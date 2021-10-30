@@ -15,6 +15,8 @@ FROM node:lts-alpine
 
 RUN npm i -g pnpm
 
+WORKDIR /usr/app
+
 COPY --from=builder ./node_modules ./node_modules
 COPY --from=builder ./dist ./dist
 COPY package.json ./
