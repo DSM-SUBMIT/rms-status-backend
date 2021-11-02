@@ -10,8 +10,11 @@ import { Outage } from './outage';
 
 @Entity()
 export class Comment {
+  @PrimaryGeneratedColumn()
+  id!: number;
+
   @ManyToOne((type) => Outage, (outage) => outage.id, {
-    primary: true,
+    nullable: false,
   })
   @JoinColumn({ name: 'outage_id' })
   outageId!: Outage;
