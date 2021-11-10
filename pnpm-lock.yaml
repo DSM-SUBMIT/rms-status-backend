@@ -1,6 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@types/fxjs': ^0.15.0
   '@types/jest': ^27.0.2
   '@types/node': ^16.11.2
   '@types/supertest': ^2.0.11
@@ -10,6 +11,7 @@ specifiers:
   fastify-cors: ^6.0.2
   fastify-plugin: ^3.0.0
   fastify-swagger: ^4.12.5
+  fxjs: ^0.21.3
   jest: ^27.2.5
   mysql2: ^2.3.2
   nodemon: ^2.0.13
@@ -32,6 +34,7 @@ dependencies:
   fastify-cors: 6.0.2
   fastify-plugin: 3.0.0
   fastify-swagger: 4.12.5
+  fxjs: 0.21.3
   mysql2: 2.3.2
   pg: 8.7.1
   pino-pretty: 7.1.0
@@ -41,6 +44,7 @@ dependencies:
   typeorm: 0.2.38_mysql2@2.3.2+pg@8.7.1
 
 devDependencies:
+  '@types/fxjs': 0.15.0
   '@types/jest': 27.0.2
   '@types/node': 16.11.2
   '@types/supertest': 2.0.11
@@ -356,6 +360,14 @@ packages:
       '@babel/core': 7.15.8
       '@babel/helper-plugin-utils': 7.14.5
     dev: true
+
+  /@babel/runtime-corejs3/7.16.3:
+    resolution: {integrity: sha512-IAdDC7T0+wEB4y2gbIL0uOXEYpiZEeuFUTVbdGq+UwCcF35T/tS8KrmMomEwEc5wBbyfH3PJVpTSUqrhPDXFcQ==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      core-js-pure: 3.19.1
+      regenerator-runtime: 0.13.9
+    dev: false
 
   /@babel/template/7.15.4:
     resolution: {integrity: sha512-UgBAfEa1oGuYgDIPM2G+aHa4Nlo9Lh6mGD2bDBGMTbYnc38vulXPuC1MGjYILIEmlwl6Rd+BPR9ee3gm20CBtg==}
@@ -700,6 +712,10 @@ packages:
 
   /@types/cookiejar/2.1.2:
     resolution: {integrity: sha512-t73xJJrvdTjXrn4jLS9VSGRbz0nUY3cl2DMGDU48lKl+HR9dbbjW2A9r3g40VA++mQpy6uuHg33gy7du2BKpog==}
+    dev: true
+
+  /@types/fxjs/0.15.0:
+    resolution: {integrity: sha512-0DJytjz2PjgNflOpc2b6WPVpU9IDk8AucfHgMj553gi7CBGsdzhSgOy64fmcHLKqh60ZKLnq2FHMyKJStqNJxA==}
     dev: true
 
   /@types/graceful-fs/4.1.5:
@@ -1331,6 +1347,11 @@ packages:
     resolution: {integrity: sha512-JxbCBUdrfr6AQjOXrxoTvAMJO4HBTUIlBzslcJPAz+/KT8yk53fXun51u+RenNYvad/+Vc2DIz5o9UxlCDymFQ==}
     dev: true
 
+  /core-js-pure/3.19.1:
+    resolution: {integrity: sha512-Q0Knr8Es84vtv62ei6/6jXH/7izKmOrtrxH9WJTHLCMAVeU+8TF8z8Nr08CsH4Ot0oJKzBzJJL9SJBYIv7WlfQ==}
+    requiresBuild: true
+    dev: false
+
   /create-require/1.1.1:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
     dev: true
@@ -1812,6 +1833,12 @@ packages:
   /function-bind/1.1.1:
     resolution: {integrity: sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==}
     dev: true
+
+  /fxjs/0.21.3:
+    resolution: {integrity: sha512-8VubsQoPEm2bA+Q80Bh12cTWCnGpIi1T6e6Ot61ZfqbB3yoickB+//HJDpq+okdmu9gNQmnN7VpfRaT/aBdwXA==}
+    dependencies:
+      '@babel/runtime-corejs3': 7.16.3
+    dev: false
 
   /generate-function/2.3.1:
     resolution: {integrity: sha512-eeB5GfMNeevm/GRYq20ShmsaGcmI81kIX2K9XQx5miC8KdHaC6Jm0qQ8ZNeGOi7wYB8OsdxKs+Y2oVuTFuVwKQ==}
@@ -3447,6 +3474,10 @@ packages:
 
   /reflect-metadata/0.1.13:
     resolution: {integrity: sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==}
+    dev: false
+
+  /regenerator-runtime/0.13.9:
+    resolution: {integrity: sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==}
     dev: false
 
   /registry-auth-token/4.2.1:

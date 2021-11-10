@@ -20,6 +20,7 @@
     "fastify-cors": "^6.0.2",
     "fastify-plugin": "^3.0.0",
     "fastify-swagger": "^4.12.5",
+    "fxjs": "^0.21.3",
     "mysql2": "^2.3.2",
     "pg": "^8.7.1",
     "pino-pretty": "^7.1.0",
@@ -29,6 +30,7 @@
     "typeorm": "^0.2.38"
   },
   "devDependencies": {
+    "@types/fxjs": "^0.15.0",
     "@types/jest": "^27.0.2",
     "@types/node": "^16.11.2",
     "@types/supertest": "^2.0.11",
